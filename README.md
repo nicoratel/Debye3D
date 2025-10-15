@@ -13,6 +13,7 @@ The core objective of this code is to compute scattering intensities either as:
 - isotropic radial averages `I(q)` produced by spherical averaging over orientations (useful for comparison with powder or solution scattering).
 
 The numerical kernels are implemented with Numba for efficient parallel execution on CPU. Optionally, an external `DebyeCalculator` (if available) supports GPU-accelerated Debye-sum computations.
+In the code, the direct beam is aligned with y axis, and the detector frame lies in the (x,z) plane.
 
 ---
 
