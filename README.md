@@ -1,13 +1,43 @@
-Ce code réalise le calcul de Debye en 3D et sa projection sur le plan détecteur (q_x, q_z).
+# Debye3D
 
-La classe NanoparticleScattering2D prend en entrée un fichier .xyz et les caractéristiques expérimentales suivantes:
-- longueur d'onde
-- distance échantillon-detecteur
-- nombre de pixels (détécteur supposé carré)
-- taille de pixels
+**Debye3D** is a Python module for simulating 2D X-ray scattering patterns from atomic-scale nanoparticle structures.  
+It implements direct Debye-like summation, orientation averaging (Fibonacci quadrature and Gaussian orientation distributions), and utilities for radial integration and visualization.
 
-C'est donc la géométrie de l'expérience qui définit la gamme de q accessible.
-Le fichier xyz utilisé en entrée peut décrire des positions atomiques ou des positions de particules dans un réseau.  
-Le fichier generate_paracrystal_assembly contient des fonctions permettant de générer des assemblages de particules suivant des réseaux paracristallins.
-La méthode rotate_positions() de la classe NanoparticleScattering2D permet d'orienter la particule selon le choix de l'utilisateur, suivant une rotation (alpha, beta, gamma) obéissant à la convention ZYZ des angles d'Euler. On peut ainsi orienter un réseau suivant un axe de zone défini
+---
 
+## Overview
+
+The core objective of this code is to compute scattering intensities either as:
+
+- a full 2D detector-plane intensity map `I(Q_x, Q_z)` computed from the atomic positions via a direct coherent sum, or
+- isotropic radial averages `I(q)` produced by spherical averaging over orientations (useful for comparison with powder or solution scattering).
+
+The numerical kernels are implemented with Numba for efficient parallel execution on CPU. Optionally, an external `DebyeCalculator` (if available) supports GPU-accelerated Debye-sum computations.
+
+---
+
+## Key features
+
+- Direct evaluation of `|∑_a exp(i Q·r_a)|^2 * f(Q)^2` on a user-defined detector geometry.
+- Isotropic radial averaging via:
+  - Fibonacci sphere quadrature (uniform direction sampling).
+  - Explicit Gaussian orientation distributions (3D orientation spreading).
+- pyFAI helpers for fast azimuthal integration when pyFAI is installed.
+- Numba acceleration for computationally intensive summations.
+- Minimal dependencies beyond scientific Python stack (ASE for structure I/O).
+- structures given as input can be rotated using a dedicated method based on ZYZ Euler convention
+
+---
+
+## Installation
+
+It is recommended to use a virtual environment.
+
+```bash
+# create & activate virtual environment (example with venv)
+python -m venv .venv
+source .venv/bin/activate    # Linux / macOS
+.venv\Scripts\activate       # Windows (PowerShell)
+
+# install core dependencies
+pip install numpy scipy matplotlib numba tqdm psutil ase xraydb
