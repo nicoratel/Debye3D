@@ -1,11 +1,11 @@
-# 🧩 Debye3D – 3D X-ray Scattering Intensity (CPU/GPU Hybrid)
+# Debye3D – 3D X-ray Scattering Intensity (CPU/GPU Hybrid)
 
 **Debye3D** is a hybrid **CPU/GPU** implementation of 3D X-ray scattering intensity calculations using the **Debye formula**.
 It supports isotropic and uniaxial orientation averaging, GPU acceleration via PyTorch, and high-performance CPU fallback via Numba.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 git clone https://github.com/<your-username>/debye3d.git
@@ -24,9 +24,9 @@ pip install -r requirements.txt
 
 ---
 
-## 🧠 Main Classes
+## Main Classes
 
-### 🧪 `Experiment`
+### `Experiment`
 
 Represents the **experimental detector geometry** and defines the **accessible Q-space**.
 
@@ -48,7 +48,7 @@ Represents the **experimental detector geometry** and defines the **accessible Q
 
 ---
 
-### 💠 `Debye3D(structure_file, ...)`
+### `Debye3D(structure_file, ...)`
 
 Inherits from `Experiment` and adds **atomic structure** handling and **scattering computation** capabilities.
 
@@ -61,7 +61,7 @@ Inherits from `Experiment` and adds **atomic structure** handling and **scatteri
 
 ---
 
-## ⚙️ Key Methods
+## Key Methods
 
 | Method                                                             | Description                                                                             |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
@@ -83,7 +83,7 @@ Inherits from `Experiment` and adds **atomic structure** handling and **scatteri
 
 ---
 
-## ⚡ CPU-Accelerated (Numba) Functions
+## CPU-Accelerated (Numba) Functions
 
 If `numba` is installed, the following parallelized versions are automatically available:
 
@@ -95,7 +95,7 @@ These functions run efficiently on multicore CPUs using parallel JIT compilation
 
 ---
 
-## 🧭 Command-Line Usage
+## Command-Line Usage
 
 ```bash
 python debye3d.py structure.xyz --use_gpu --npix 300 --fib 1000
@@ -117,7 +117,7 @@ python debye3d.py structure.xyz --use_gpu --npix 300 --fib 1000
 
 ---
 
-## 📊 Example (Python API)
+## Example (Python API)
 
 ```python
 from debye3d import Debye3D
@@ -132,12 +132,6 @@ I = model.compute_intensity(use_gpu=True)
 model.plot_intensity(I, log=True)
 ```
 
----
 
-## 🧾 License
-
-This project is distributed under the **MIT License**.
 
 ---
-
-Would you like me to include a short **“Example Notebook” (`example.ipynb`)** showing isotropic and uniaxial averaging results (e.g. a simple script to visualize I(q)) to complement this README on GitHub?
