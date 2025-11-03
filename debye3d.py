@@ -150,6 +150,19 @@ class Debye3D(Experiment):
         with open(filename,'w') as f:
             f.write(line2write)
 
+    def update_structure(self,coords,element):
+        """ 
+        Update strcutre associated to the classe given a list of coordinates and a single element
+        Parameters
+        ----------
+        coords: tuple, ndarray
+            List of atomic coordinates
+        element: string
+        """
+        self.positions = coords
+        self.nb_atoms= self.positions.shape[0]
+        self.elements = np.full(self.nb_atoms,element)
+
 
     
     # ===============================================================
@@ -218,12 +231,6 @@ class Debye3D(Experiment):
         verbose : bool
             If True, prints progress and GPU memory diagnostics.
         """
-
-        import gc
-        import torch
-        import numpy as np
-        from tqdm import tqdm
-        import time
 
         if not (TORCH_AVAILABLE and torch.cuda.is_available()):
             raise RuntimeError("GPU not available or PyTorch not compiled with CUDA.")
