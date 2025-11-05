@@ -59,6 +59,7 @@ Inherits from `Experiment` and adds **atomic structure** handling and **scatteri
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
 | `view_structure()`                                                 | Writes a temporary XYZ file and opens it in *Jmol*. Requires `jmol` in PATH.            |
 | `save_structure_as_xyz(filename)`                                  | Saves positions as xyz file. May be used for structures built with external funcions.   |
+| `update_structure(coords,element)`                                 | Updates the structure used by the model given atomic coords (array) and element (str)   |
 | `auto_batch_size()`                                                | Automatically determines an optimal GPU batch size based on available VRAM.             |
 | `xray_f0(element, q)`                                              | Returns the atomic form factor *f₀(q)* using XrayDB.                                    |
 | `compute_intensity(use_gpu=True, batch_size=None)`                 | Computes 2D scattering intensity (Debye equation) using GPU or CPU fallback.            |
