@@ -5,14 +5,6 @@ It supports isotropic and uniaxial orientation averaging, GPU acceleration via P
 
 ---
 
-## Installation
-
-```bash
-git clone https://github.com/<your-username>/debye3d.git
-cd debye3d
-pip install -r requirements.txt
-```
-
 ### Main dependencies
 
 * `numpy`, `scipy`, `matplotlib`
