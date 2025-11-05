@@ -122,7 +122,7 @@ model = Debye3D("structure.xyz", wl=1.0, distance=0.5)
 # Roteation 90° around Y
 model.rotate_positions(alpha=0,beta=90,gamma=0)
 # Introduce position disorder
-d.shake_positions(frac_a=0.02,frac_b=0.02,frac_c=0.02)
+model.shake_positions(frac_a=0.02,frac_b=0.02,frac_c=0.02)
 
 # Compute intensity (GPU if available)
 I = model.compute_intensity(use_gpu=True)
